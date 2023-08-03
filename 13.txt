@@ -1,0 +1,27 @@
+import java.util.*;
+public class ques13 {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        long ph;int rno, sum = 0, temp;
+        String pw;
+        String name;
+        System.out.println("Enter the Room Number");
+        rno = sc.nextInt();
+        int rno1 = rno;
+        System.out.println("Enter the Mobile Number");
+        ph = sc.nextLong();
+        System.out.println("Enter the Name");
+        name = sc.next();
+        while(rno>0)
+        {
+            int d = rno%10;
+            sum+=d;
+            rno/=10;
+        }
+        String sym ="(!@#$%^&*)";
+        int len = name.length();
+        int c  = len /100;
+        pw=""+name.charAt(0)+(ph%10)+sum+sym.charAt(c)+name.charAt(len-1);
+        System.out.println(pw);
+    }
+}

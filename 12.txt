@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class ques12 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a positive number: ");
+        int num = scanner.nextInt();
+        scanner.close();
+
+        if (num <= 0) {
+            System.out.println("Please enter a positive non-zero number.");
+            return;
+        }
+
+        NumberProcessor processor = new NumberProcessor();
+        if (processor.isHappyNumber(num)) {
+            System.out.println(num + " is a happy number!");
+        } else {
+            System.out.println(num + " is not a happy number.");
+        }
+    }
+
+    interface NumberOperations {
+        int sumOfSquaresOfDigits(int num);
+    }
+
+    static class NumberProcessor implements NumberOperations {
+        @Override
+        public int sumOfSquaresOfDigits(int num) {
+            int sum = 0;
+            while (num > 0) {
+                int digit = num % 10;
+                sum += digit * digit;
+                num /= 10;
+            }
+            return sum;
+        }
+
+        public boolean isHappyNumber(int num) {
+            int slow = num;
+            int fast = num;
+            do {
+                slow = sumOfSquaresOfDigits(slow);
+                fast = sumOfSquaresOfDigits(sumOfSquaresOfDigits(fast));
+            } while (slow != fast);
+
+            return slow == 1;
+        }
+    }
+}

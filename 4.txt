@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class ques4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter no 1 : ");
+        double num1 = sc.nextDouble();
+        System.out.println("Enter no 2 : ");
+        double num2 = sc.nextDouble();
+        System.out.println("Select operator :");
+        System.out.println("1. *");
+        System.out.println("2. +");
+        System.out.println("3. /");
+        System.out.println("4. -");
+        System.out.println("Enter no :");
+        int op = sc.nextInt();
+        double result = 0.0;
+        switch (op) {
+            case 1:
+               result = num1 * num2;
+               break;
+            case 2:
+                result = num1 + num2;
+                break;
+            case 3:
+                result = num1 / num2;
+                break;
+            case 4:
+                result = num1 - num2;
+                break;
+            default :
+                System.out.println("Enter no btw 1-4 ");
+                return;
+        }
+        System.out.println("Result = " + result);
+    }
+}

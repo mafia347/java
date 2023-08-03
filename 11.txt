@@ -1,0 +1,31 @@
+package PartA;
+
+import java.util.Scanner;
+
+public class ques11 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a two-digit number: ");
+        int number = scanner.nextInt();
+
+        int digitSum = calculateDigitSum(number);
+        System.out.println("Initial digit sum: " + digitSum);
+
+        while (digitSum >= 10) {
+            digitSum = calculateDigitSum(digitSum);
+            System.out.println("New digit sum: " + digitSum);
+        }
+
+        System.out.println("Final digit sum is less than 10.");
+    }
+
+    private static int calculateDigitSum(int num) {
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum;
+    }
+}

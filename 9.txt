@@ -1,0 +1,53 @@
+import java.util.*;
+interface PositiveNegativeNumbers {
+    int[] getPositiveNumbers(int[] arr);
+    int[] getNegativeNumbers(int[] arr);
+}
+
+interface PalindromeChecker {
+    boolean isPalindrome(int number);
+}
+
+class NumberProcessor implements PositiveNegativeNumbers, PalindromeChecker {
+    @Override
+    public int[] getPositiveNumbers(int[] arr) {
+        return Arrays.stream(arr).filter(x -> x > 0).toArray();
+    }
+
+    @Override
+    public int[] getNegativeNumbers(int[] arr) {
+        return Arrays.stream(arr).filter(x -> x < 0).toArray();
+    }
+
+    @Override
+    public boolean isPalindrome(int number) {
+        int originalNumber = number;
+        int reversedNumber = 0;
+
+        while (number != 0) {
+            int digit = number % 10;
+            reversedNumber = reversedNumber * 10 + digit;
+            number /= 10;
+        }
+
+        return originalNumber == reversedNumber;
+    }
+}
+
+public class ques9 {
+    public static void main(String[] args) {
+        int[] arr = {12, -5, 22, -10, 121, 88, -99};
+        NumberProcessor processor = new NumberProcessor();
+
+        int[] positiveNumbers = processor.getPositiveNumbers(arr);
+        int[] negativeNumbers = processor.getNegativeNumbers(arr);
+
+        System.out.println("Positive Numbers: " + Arrays.toString(positiveNumbers));
+        System.out.println("Negative Numbers: " + Arrays.toString(negativeNumbers));
+
+        int numberToCheck = 121;
+        boolean isPalindrome = processor.isPalindrome(numberToCheck);
+
+        System.out.println(numberToCheck + " is a palindrome: " + isPalindrome);
+    }
+}

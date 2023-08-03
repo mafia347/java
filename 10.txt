@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class ques10 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of levels for the number pyramid: ");
+        int levels = scanner.nextInt();
+        scanner.close();
+
+        printNumberPyramid(levels);
+    }
+
+    public static void printNumberPyramid(int levels) {
+        int maxNumber = levels * 2 - 1;
+
+        for (int i = 1; i <= levels; i++) {
+            int currentLevelNumbers = i * 2 - 1;
+            int spaces = maxNumber - currentLevelNumbers;
+
+            // Print leading spaces
+            for (int j = 0; j < spaces / 2; j++) {
+                System.out.print(" ");
+            }
+
+            // Print numbers
+            for (int j = 1; j <= currentLevelNumbers; j++) {
+                System.out.print(j);
+            }
+
+            // Print trailing spaces
+            for (int j = 0; j < spaces / 2; j++) {
+                System.out.print(" ");
+            }
+
+            System.out.println();
+        }
+    }
+}

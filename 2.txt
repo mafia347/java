@@ -1,0 +1,57 @@
+public class ques2 {
+    public void matrixMethods()
+    {
+        int[] arr={1,2,3,4,5};
+        int evenIndex=0,oddIndex=0;
+        int[] even = new int[5];
+        int[] odd = new int[5];
+        for(int i=0;i<5;i++)
+        {
+            if(arr[i]%2==0)
+            {
+                even[evenIndex++]=arr[i];
+            }
+            else {
+                odd[oddIndex++]=arr[i];
+
+            }
+        }
+        System.out.println("Even");
+        for(int i=0;i<evenIndex;i++)
+            System.out.print(even[i]+" ");
+
+        System.out.println();
+
+        System.out.println("Odd");
+        for(int i=0;i<oddIndex;i++)
+            System.out.print(odd[i]+" ");
+
+        System.out.println();
+    }
+}
+class MatrixTranspose extends ques2 {
+    @Override
+    public void matrixMethods()
+    {
+        super.matrixMethods();
+        int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        int n = matrix.length;
+        int[][] result = new int[n][n];
+    System.out.println("Transpose Matrix");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                result[i][j] = matrix[j][i];
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(result[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        MatrixTranspose obj = new MatrixTranspose();
+        obj.matrixMethods();
+    }
+}
