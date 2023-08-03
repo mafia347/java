@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class b1 {
+    public static void main(String[] args) {
+        int[] empNo = {1001, 1002, 1003, 1004, 1005, 1006, 1007};
+        String[] empName = {"Abc", "Opqr", "Ghi", "Wxyz", "Jklmn", "Stuv", "Def"};
+        String[] joinDate = {"01/04/2009", "23/08/2012", "12/11/2008", "29/01/2013", "16/07/2005", "01/01/2000", "12/06/2006"};
+        char[] desigCode = {'E', 'C', 'K', 'R', 'M', 'E', 'C'};
+        String[] department = {"R&D", "PM", "Acct", "Front Desk", "Engg", "Manufacturing", "PM"};
+        double[] basic = {20000, 30000, 10000, 12000, 50000, 23000, 29000};
+        double[] hra = {8000, 12000, 8000, 6000, 20000, 9000, 12000};
+        double[] it = {3000, 9000, 1000, 2000, 20000, 4400, 10000};
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the employee ID: ");
+        int empId = scanner.nextInt();
+        scanner.close();
+
+        int index = -1;
+        for (int i = 0; i < empNo.length; i++) {
+            if (empNo[i] == empId) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != -1) {
+            System.out.println("Employee Details:");
+            System.out.println("Emp No: " + empNo[index]);
+            System.out.println("Emp Name: " + empName[index]);
+            System.out.println("Join Date: " + joinDate[index]);
+            char desig = desigCode[index];
+            switch (desig) {
+                case 'E':
+                    System.out.println("Designation: Engineer");
+                    System.out.println("DA: 20000");
+                    break;
+                case 'C':
+                    System.out.println("Designation: Consultant");
+                    System.out.println("DA: 32000");
+                    break;
+                case 'K':
+                    System.out.println("Designation: Clerk");
+                    System.out.println("DA: 12000");
+                    break;
+                case 'R':
+                    System.out.println("Designation: Receptionist");
+                    System.out.println("DA: 15000");
+                    break;
+                case 'M':
+                    System.out.println("Designation: Manager");
+                    System.out.println("DA: 40000");
+                    break;
+                default:
+                    System.out.println("Designation: Not Available");
+            }
+            double salary = basic[index] + hra[index] + desigDA(desig) - it[index];
+            System.out.println("Salary: " + salary);
+        } else {
+            System.out.println("Employee not found.");
+        }
+    }
+
+    public static double desigDA(char desig) {
+        switch (desig) {
+            case 'E':
+                return 20000;
+            case 'C':
+                return 32000;
+            case 'K':
+                return 12000;
+            case 'R':
+                return 15000;
+            case 'M':
+                return 40000;
+            default:
+                return 0;
+        }
+    }
+}

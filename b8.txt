@@ -1,0 +1,79 @@
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    Node head;
+    Node tail;
+
+    void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+    }
+
+    int getMinimum() {
+        if (head == null) {
+            throw new RuntimeException("List is empty.");
+        }
+
+        int min = head.data;
+        Node current = head.next;
+        while (current != null) {
+            if (current.data < min) {
+                min = current.data;
+            }
+            current = current.next;
+        }
+
+        return min;
+    }
+
+    int getMaximum() {
+        if (head == null) {
+            throw new RuntimeException("List is empty.");
+        }
+
+        int max = head.data;
+        Node current = head.next;
+        while (current != null) {
+            if (current.data > max) {
+                max = current.data;
+            }
+            current = current.next;
+        }
+
+        return max;
+    }
+}
+
+public class b8 {
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insert(10);
+        list.insert(25);
+        list.insert(7);
+        list.insert(30);
+        list.insert(15);
+
+        int minimum = list.getMinimum();
+        int maximum = list.getMaximum();
+
+        System.out.println("Minimum value in the list: " + minimum);
+        System.out.println("Maximum value in the list: " + maximum);
+    }
+}
