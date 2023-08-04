@@ -1,0 +1,70 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import  java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import javax.swing.*;
+
+
+public class EmployeeFile {
+   
+
+    public static void main(String[] args) {
+        JFrame frameobj = new JFrame();
+        frameobj.setSize(500, 500);
+        GridLayout g1 = new GridLayout(5, 2);
+        frameobj.setLayout(g1);
+        JPanel[] panels = new JPanel[10];
+        JLabel[] labels = new JLabel[4];
+        final JTextField[] textFields = new JTextField[4];
+        for (int i = 0; i < 10; i++) {
+            panels[i] = new JPanel();
+        }
+        for (int i = 0; i < 4; i++) {
+            labels[i] = new JLabel(i == 0 ? "NAME" : (i == 1 ? "ID" : (i == 2 ? "DOJ" : "DOB")));
+            textFields[i] = new JTextField();
+            textFields[i].setPreferredSize(new Dimension(200, 30));
+            panels[i * 2].add(labels[i]);
+            panels[i * 2 + 1].add(textFields[i]);
+        }
+        JButton b1 = new JButton("SUBMIT");
+        JButton b2 = new JButton("RESET");
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                File fileobj = new File("C:\\Users\\asus\\Desktop\\javanew\\.metadata\\roshan\\src\\roshan\\roshan.txt");
+
+                try {
+                    if (!fileobj.exists()) {
+                        fileobj.createNewFile();
+                    }
+                    FileWriter fw = new FileWriter(fileobj.getAbsoluteFile(), true);
+                    String data = "Name: " + textFields[0].getText() + "\n" +
+                            "ID: " + textFields[1].getText() + "\n" +
+                            "DOJ: " + textFields[2].getText() + "\n" +
+                            "DOB: " + textFields[3].getText() + "\n";
+                    System.out.println(data);
+                    fw.write(data);
+                    fw.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (JTextField textField : textFields) {
+                    textField.setText("");
+                }
+            }
+        });
+        panels[8].add(b1);
+        panels[9].add(b2);
+        for (JPanel panel : panels) {
+            frameobj.add(panel);
+        }
+        frameobj.setVisible(true);
+    }
+}
